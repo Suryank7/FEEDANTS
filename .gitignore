@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+.expo/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+build/
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Testing
+coverage/
+
+# React Native
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# Media & Assignment Documents
+*.pdf
+*.jpg
+*.jpeg
+Objective_Page.png
+
