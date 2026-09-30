@@ -45,3 +45,6 @@ models/
 
 # Node (if frontend is added later)
 node_modules/
+
+# Documents
+Ebook-Agentic-AI.pdf
