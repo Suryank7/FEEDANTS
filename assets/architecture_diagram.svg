@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 780" width="1000" height="780">
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .box { rx: 8; ry: 8; stroke-width: 1.5; }
+      .ingest-box { fill: #f0fdf4; stroke: #16a34a; }
+      .store-box { fill: #eff6ff; stroke: #2563eb; }
+      .graph-box { fill: #faf5ff; stroke: #9333ea; }
+      .out-box { fill: #fffbeb; stroke: #d97706; }
+      .node-box { fill: #ffffff; stroke: #6b7280; stroke-width: 1.2; rx: 6; ry: 6; }
+      .decision-box { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.5; rx: 6; ry: 6; }
+      .title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 20px; font-weight: 700; fill: #111827; }
+      .subtitle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #4b5563; }
+      .text-bold { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 13px; font-weight: 600; fill: #1f2937; text-anchor: middle; }
+      .text-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #6b7280; text-anchor: middle; }
+      .arrow { stroke: #4b5563; stroke-width: 1.8; fill: none; marker-end: url(#arrowhead); }
+      .arrow-yes { stroke: #16a34a; stroke-width: 1.8; fill: none; marker-end: url(#arrowhead-green); }
+      .arrow-no { stroke: #dc2626; stroke-width: 1.8; fill: none; marker-end: url(#arrowhead-red); }
+      .label-yes { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 700; fill: #16a34a; }
+      .label-no { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-weight: 700; fill: #dc2626; }
+    </style>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#4b5563" />
+    </marker>
+    <marker id="arrowhead-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#16a34a" />
+    </marker>
+    <marker id="arrowhead-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#dc2626" />
+    </marker>
+  </defs>
+
+  <!-- Solid White Background -->
+  <rect width="1000" height="780" class="bg" />
+
+  <!-- Diagram Title Header -->
+  <text x="500" y="38" text-anchor="middle" class="title">Agentic AI RAG Chatbot — System Architecture</text>
+  <text x="500" y="58" text-anchor="middle" class="subtitle">LangGraph StateGraph • ChromaDB • sentence-transformers • Groq LLM</text>
+
+  <!-- ==================== STAGE 1: INGESTION PIPELINE ==================== -->
+  <rect x="40" y="80" width="920" height="120" class="box ingest-box" />
+  <text x="55" y="102" class="subtitle" fill="#15803d">1. Offline Document Ingestion Pipeline</text>
+
+  <!-- PDF Document -->
+  <rect x="65" y="115" width="160" height="65" class="node-box" />
+  <text x="145" y="142" class="text-bold">Agentic AI eBook</text>
+  <text x="145" y="159" class="text-sub">PDF (59 Pages)</text>
+
+  <!-- PDF Loader -->
+  <rect x="260" y="115" width="160" height="65" class="node-box" />
+  <text x="340" y="142" class="text-bold">PyMuPDF Loader</text>
+  <text x="340" y="159" class="text-sub">Extract &amp; Clean Text</text>
+
+  <!-- Text Chunker -->
+  <rect x="455" y="115" width="160" height="65" class="node-box" />
+  <text x="535" y="142" class="text-bold">Recursive Chunker</text>
+  <text x="535" y="159" class="text-sub">800 chars / 200 overlap</text>
+
+  <!-- Embedding Model -->
+  <rect x="650" y="115" width="160" height="65" class="node-box" />
+  <text x="730" y="142" class="text-bold">Embedding Model</text>
+  <text x="730" y="159" class="text-sub">all-MiniLM-L6-v2 (384-d)</text>
+
+  <!-- ChromaDB Store Target -->
+  <rect x="840" y="115" width="100" height="65" class="node-box" style="stroke: #2563eb;" />
+  <text x="890" y="142" class="text-bold">ChromaDB</text>
+  <text x="890" y="159" class="text-sub">137 Vectors</text>
+
+  <!-- Ingestion Arrows -->
+  <path d="M 225 147 L 252 147" class="arrow" />
+  <path d="M 420 147 L 447 147" class="arrow" />
+  <path d="M 615 147 L 642 147" class="arrow" />
+  <path d="M 810 147 L 832 147" class="arrow" />
+
+  <!-- ==================== STAGE 2 & 3: RUNTIME LANGGRAPH WORKFLOW ==================== -->
+  <rect x="40" y="225" width="920" height="385" class="box graph-box" />
+  <text x="55" y="248" class="subtitle" fill="#7e22ce">2. Runtime Orchestration: LangGraph RAG Workflow</text>
+
+  <!-- User Query -->
+  <rect x="65" y="270" width="180" height="60" class="node-box" style="stroke: #9333ea;" />
+  <text x="155" y="296" class="text-bold">User Question</text>
+  <text x="155" y="313" class="text-sub">FastAPI / Streamlit UI</text>
+
+  <!-- Node 1: Process Query -->
+  <rect x="290" y="270" width="180" height="60" class="node-box" />
+  <text x="380" y="296" class="text-bold">1. process_query</text>
+  <text x="380" y="313" class="text-sub">Clean + Memory Context</text>
+
+  <!-- Node 2: Retrieve Context -->
+  <rect x="515" y="270" width="180" height="60" class="node-box" />
+  <text x="605" y="296" class="text-bold">2. retrieve_context</text>
+  <text x="605" y="313" class="text-sub">Top-K Vector Search</text>
+
+  <!-- ChromaDB Query Box -->
+  <rect x="740" y="270" width="190" height="60" class="box store-box" />
+  <text x="835" y="296" class="text-bold">ChromaDB Store</text>
+  <text x="835" y="313" class="text-sub">Cosine Similarity Search</text>
+
+  <path d="M 245 300 L 282 300" class="arrow" />
+  <path d="M 470 300 L 507 300" class="arrow" />
+  <path d="M 695 300 L 732 300" class="arrow" />
+
+  <!-- Arrow down from ChromaDB to Validate Context -->
+  <path d="M 835 330 L 835 385 L 695 385" class="arrow" />
+
+  <!-- Node 3: Validate Context -->
+  <rect x="495" y="360" width="195" height="55" class="decision-box" />
+  <text x="592" y="385" class="text-bold">3. validate_context</text>
+  <text x="592" y="401" class="text-sub">Relevance Check (&gt;= 0.30)</text>
+
+  <!-- Conditional Routing Branch -->
+  <!-- YES -> Generate Grounded Answer -->
+  <path d="M 495 387 L 330 387 L 330 450" class="arrow-yes" />
+  <text x="390" y="380" class="label-yes">YES (Relevant)</text>
+
+  <!-- NO -> Return Not Found -->
+  <path d="M 592 415 L 592 450" class="arrow-no" />
+  <text x="600" y="438" class="label-no">NO (Out of Scope)</text>
+
+  <!-- Node 4a: Generate Grounded Answer -->
+  <rect x="230" y="455" width="200" height="65" class="node-box" style="stroke: #16a34a; stroke-width: 1.5;" />
+  <text x="330" y="482" class="text-bold">4a. generate_grounded_answer</text>
+  <text x="330" y="499" class="text-sub">Groq (openai/gpt-oss-120b)</text>
+  <text x="330" y="513" class="text-sub">Strict PDF Grounding Prompt</text>
+
+  <!-- Node 4b: Return Not Found -->
+  <rect x="495" y="455" width="195" height="65" class="node-box" style="stroke: #dc2626;" />
+  <text x="592" y="482" class="text-bold">4b. return_not_found</text>
+  <text x="592" y="499" class="text-sub">Standard refusal message</text>
+  <text x="592" y="513" class="text-sub">Confidence: 0.0</text>
+
+  <!-- Node 5: Build Response -->
+  <rect x="230" y="545" width="200" height="50" class="node-box" />
+  <text x="330" y="567" class="text-bold">5. build_response</text>
+  <text x="330" y="583" class="text-sub">Compute Confidence &amp; Citations</text>
+
+  <path d="M 330 520 L 330 537" class="arrow" />
+
+  <!-- Arrows to Final Response -->
+  <path d="M 330 595 L 330 635" class="arrow" />
+  <path d="M 592 520 L 592 635" class="arrow" />
+
+  <!-- ==================== STAGE 4: FINAL STRUCTURED RESPONSE ==================== -->
+  <rect x="40" y="635" width="920" height="115" class="box out-box" />
+  <text x="55" y="658" class="subtitle" fill="#b45309">3. Structured Final Response Contract</text>
+
+  <!-- Answer Box -->
+  <rect x="65" y="675" width="260" height="60" class="node-box" />
+  <text x="195" y="700" class="text-bold">1. Grounded Answer</text>
+  <text x="195" y="718" class="text-sub">Strictly from eBook evidence</text>
+
+  <!-- Confidence Box -->
+  <rect x="345" y="675" width="190" height="60" class="node-box" />
+  <text x="440" y="700" class="text-bold">2. Confidence Score</text>
+  <text x="440" y="718" class="text-sub">Weighted Composite (0.0-1.0)</text>
+
+  <!-- Sources Box -->
+  <rect x="555" y="675" width="180" height="60" class="node-box" />
+  <text x="645" y="700" class="text-bold">3. Source Citations</text>
+  <text x="645" y="718" class="text-sub">Actual Page # &amp; Section</text>
+
+  <!-- Retrieved Chunks Box -->
+  <rect x="755" y="675" width="180" height="60" class="node-box" />
+  <text x="845" y="700" class="text-bold">4. Retrieved Context</text>
+  <text x="845" y="718" class="text-sub">Chunk ID, text snippet, score</text>
+</svg>

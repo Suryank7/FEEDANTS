@@ -1,0 +1,39 @@
+# ─────────────────────────────────────────────────────
+# Agentic AI RAG Chatbot — Python Dependencies
+# ─────────────────────────────────────────────────────
+
+# --- Core Framework ---
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.5.0
+
+# --- LangGraph & LangChain ---
+langgraph>=0.2.0
+langchain-core>=0.3.0
+langchain-text-splitters>=0.3.0
+langchain-groq>=0.2.0
+
+# --- LLM ---
+groq>=0.11.0
+
+# --- Embeddings ---
+sentence-transformers>=3.0.0
+
+# --- Vector Database ---
+chromadb>=0.5.0
+
+# --- PDF Processing ---
+PyMuPDF>=1.24.0
+
+# --- Environment ---
+python-dotenv>=1.0.0
+
+# --- HTTP ---
+requests>=2.31.0
+
+# --- Streamlit (optional UI) ---
+streamlit>=1.38.0
+
+# --- Testing ---
+pytest>=8.0.0
+httpx>=0.27.0
